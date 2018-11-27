@@ -1,0 +1,116 @@
+{% extends 'questions_base.html' %}
+{% block content %}
+<div class="_naevm3">
+<div class="_xu68iug">
+    <div class="_b2e3ero">
+        <div class="_5vxrtmk">
+            <div class="_1u8jwdm2">
+                <div class="_1mfk22u8">
+                    <div class="_p1dtod5"><h1 class="_wjlth5"><span class="_z8oeruf">{{ question.title }}</span></h1>
+                    </div>
+                    <div class="_ytwsykv"></div>
+                </div>
+                <div class="_pkbwydl">
+                    <p class="_2z5hbg"><span class="_2he8v2h">{{ question.description|linebreaks }}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="_1shwqdkd">
+            <div class="_7jhkecu">
+                <div class="_19likvf">
+                    <div class="_17i7q5r"><span class="_qdzd3it">Tags</span>
+                    </div>
+                    <ul class="_bn6rd2">
+                        <li class="_18jxw27" ><a class="_opia7p6" href="#"><span class="_lbfhuwf">Callouts</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="_15pvv0lq"></div>
+    <div class="_1llvwxx">
+        <div class="_1u3clsji">
+            <div >
+                <div class="_gb3b072" data-key="e276955c874b44ebab9943530d622326">
+                    <div>
+                        <h2 id="your-ip" class="_ppo6vd" ><div class="_1ty1ph2"><span >Example</span></div></h2>
+                        <div class="_xvylja">
+                            <div class="_11c9pem">
+                                {% for i in question.testcases %}
+                                    {{ i|linebreaksbr }}
+                                {% endfor %}
+                            </div>
+                            <div class="_3goane"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 id="your-ip" class="_ppo6vd" ><div class="_1ty1ph2"><span >Solution</span></div></h2>
+                        <div class="_xvylja">
+                            <div class="_11c9pem">
+                                {% for i in question.testcases_output %}
+                                    {{ i|linebreaksbr }}
+                                {% endfor %}
+                            </div>
+                            <div class="_3goane"></div>
+                        </div>
+                    </div>
+                    {% if question.explanation %}
+                    <div class="_fdb5hx" ><span >{{ question.explanation|linebreaks }}</span></div>
+                    {% endif %}
+                </div>
+            </div>
+            <div>
+                <div class="_m52e7xx">
+                    <div class="_1jvp5hdv">
+                        <div class="_1ergp6u6">
+                            <div class="_cnovfic">
+                                <div role="button" tabindex="0" class="_jy5vghb">
+                                    <div class="_8trjhhd"></div>
+                                    <div class="_p93hxxb">
+                                        <div class="_dj7stbc">Windows</div>
+                                    </div>
+                                    <div class="_8trjhhd"></div>
+                                </div>
+                                <div role="button" tabindex="0" class="_1ss2d548">
+                                    <div class="_8trjhhd"></div>
+                                    <div class="_p93hxxb">
+                                        <div class="_dj7stbc">OSX</div>
+                                    </div>
+                                    <div class="_8trjhhd"></div>
+                                </div>
+                                <div role="button" tabindex="0" class="_1ss2d548">
+                                    <div class="_8trjhhd"></div>
+                                    <div class="_p93hxxb">
+                                        <div class="_dj7stbc">Linux</div>
+                                    </div>
+                                    <div class="_8trjhhd"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="_19vzoehz">
+    <div class="_197pih1">
+        <div style="padding-bottom: 0px;"></div>
+        <div class="_10qmvhe" style="top: 0px; left: auto; position: relative; z-index: 1; width: 224px; max-height: 655px;">
+            <div class="_7jhkecu">
+                <div class="_19likvf">
+                    <div class="_17i7q5r"><span class="_qdzd3it"><span>Contents</span></span></div>
+                    <ul class="_bn6rd2">
+                        <li class="_18jxw27" style=""><a class="_opia7p6" href=""><span class="_lbfhuwf">Callouts</span></a></li>
+                        <li class="_18jxw27" style=""><a class="_opia7p6" href=""><span class="_lbfhuwf">Callouts</span></a></li>
+                        <li class="_18jxw27" style=""><a class="_opia7p6" href=""><span class="_lbfhuwf">Callouts</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock content %}

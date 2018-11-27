@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In - M-Soma Lab</title>
+    {% load staticfiles %}
+    {% load sass_tags %}
+    {% load crispy_forms_tags %}
+    {% load i18n %}
+    {% load account socialaccount %}
+
+    <!-- Icon -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <!-- Font Icon -->
+    <link href="{% static 'account/fonts/material-icon/css/material-design-iconic-font.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Main css -->
+    <link href="{% static 'account/css/account.css' %}" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        label {
+            color: transparent !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{% static 'account/images/signin-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{{ signup_url }}" class="signup-image-link">Create an account</a>
+                        <a href="{% url 'account_reset_password' %}" class="signup-image-link">Forgot password?</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">{% trans "Sign In" %}</h2>
+                        <form method="POST" class="register-form" action="{% url 'account_login' %}">
+                              {% csrf_token %}
+                              {{ form|crispy }}
+                              {% if redirect_field_value %}
+                              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                              {% endif %}
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                        {% get_providers as socialaccount_providers %}
+                        {% if socialaccount_providers %}
+                        <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                <li><a href="/accounts/facebook/login/?process=login"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="/accounts/google/login/?process=login"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'account/vendor/jquery/jquery.min.js' %}"></script>
+</body>
+</html>
+
+

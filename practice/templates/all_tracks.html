@@ -1,0 +1,35 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+<div class="content-intro">
+    <div class="content-intro-outer">
+        <div class="content-intro-inner">
+            <div class="_1mfk22u8">
+                <div class="_p1dtod5"><h1 class="_wjlth5"><span class="_z8oeruf">All Tracks</span></h1>
+                </div>
+                <!-- 
+                <div class="_ytwsykv"></div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="_rrjh7ek">
+  <div class="_197pih1">
+    <div class="_bwg9qql">
+      {% for t in track %}
+      <a class="_15nqpp8i" href="{% url 'track' t.id %}" style="margin-bottom: 20px;">
+        <div class="_5ukkxis">
+          <div class="_3egcedv">
+            <span class="_u2h5ph" style="color:#3884FF">0 solved</span>
+          </div>
+          <div class="_vjdxrk9">
+            <span class="_1o3dmghf">{{ t.title }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

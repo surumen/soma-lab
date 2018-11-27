@@ -1,0 +1,72 @@
+{% extends 'account/base.html' %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+
+<div class="content-intro">
+    <div class="content-intro-outer">
+        <div class="content-intro-inner">
+            <div class="_1mfk22u8">
+                <div class="_p1dtod5"><h1 class="_wjlth5"><span class="_z8oeruf">About SomaLab</span></h1>
+                    <div class="_1dwj0ez0">
+                        <div class="_3e2jtqk"><span class="_u2h5ph"><span>Last updated <span>2 months ago</span></span></span></div>
+                    </div>
+                </div>
+                <div class="_ytwsykv"></div>
+            </div>
+            <div class="intro-header">
+                <p class="intro-body"><span class="intro-body-content">SomaLab is a modern documentation platform where teams can document everything from products, to APIs and internal knowledge-bases.</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="_1shwqdkd"></div>
+</div>
+<div class="_15pvv0lq"></div>
+<div class="content-info">
+    <div class="_1u3clsji">
+        <div>
+            <div class="_y27ew4f">
+                <p class="_1uc14g3"><span class="intro-body-content">This is the documentation for the new version of the SomaLab platform. You can learn more about everything that improved in this version here. If you are looking for the previous version of SomaLab, head to legacy.</span>
+                </p>
+            </div>
+            <p class="_1uc14g3" data-key="08de6f94227449bb8dffb2f906f3532d"><span class="intro-body-content">The best way to discover SomaLab is to try it out. Whether you were already using the previous version of SomaLab or not, get started with SomaLab for free with the following guide:</span></p>
+            <div>
+                {% if live_contests or upcoming_contests %}
+                <div>
+                    <a class="_1lb91abp" href="{% url 'contests' %}">
+                        <div class="_1mt6nbt7"></div>
+                        <div class="_1e85jbgh">
+                            <div class="_vjdxrk9"><span class="_1o3dmghf">Explore Contests</span>
+                            </div>
+                        </div>
+                        <div class="_13pyewcs">
+                            <div class="_3egcedv"><span class="_u2h5ph">/<!-- -->contests</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            <div>
+                {% if track %}
+                <div>
+                    <a class="_1lb91abp" href="{% url 'alltracks' %}">
+                        <div class="_1mt6nbt7"></div>
+                        <div class="_1e85jbgh">
+                        <div class="_vjdxrk9">
+                        <span class="_1o3dmghf">Explore Tracks</span>
+                        </div>
+                        </div>
+                        <div class="_13pyewcs">
+                        <div class="_3egcedv"><span class="_u2h5ph">/<!-- -->tracks</span>
+                        </div>
+                        </div>
+                        </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

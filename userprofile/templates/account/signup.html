@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up - M-Soma Lab</title>
+    {% load staticfiles %}
+    {% load sass_tags %}
+    {% load crispy_forms_tags %}
+    {% load i18n %}
+    {% load account socialaccount %}
+
+    <!-- Icon -->
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <!-- Font Icon -->
+    <link href="{% static 'account/fonts/material-icon/css/material-design-iconic-font.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Main css -->
+    <link href="{% static 'account/css/account.css' %}" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        label {
+            display: none;
+            color: transparent !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">{% trans "Sign Up" %}</h2>
+                        <form method="POST" class="register-form" id="register-form" action="{% url 'account_signup' %}">
+                            <div class="form-group">
+                                  {% csrf_token %}
+                                  {{ form|crispy }}
+                                  {% if redirect_field_value %}
+                                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                  {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Sign Up"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'account/images/signup-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{{ login_url }}" class="signup-image-link">Already have an account ?</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- JS -->
+    <script src="{% static 'account/vendor/jquery/jquery.min.js' %}"></script>
+</body>
+</html>

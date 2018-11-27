@@ -1,0 +1,138 @@
+{% extends 'account.html' %}
+{% block title %}
+My Account
+{% endblock %}
+{% block content %}
+
+<div class="sidebar">
+    <div class="sidebar-outer">
+        <div class="sidebar-inner">
+            <div class="sidebar-overlay">
+                <div class="sidebar-container">
+                    <div data-scrollable="true" class="sidebar-content">
+                        <div class="sidebar-mobile">
+                            <div role="button" tabindex="-1" class="_1g8k7vl2">
+                                <svg preserveAspectRatio="xMidYMid meet" height="1em" width="1em" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" class="_13gjrqj">
+                                    <g>
+                                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                                        <polyline points="12 19 5 12 12 5"></polyline>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="sidebar-desktop">
+                            <div>
+                                <div class="nav">
+                                    <div class="_hnaeki0">
+                                        <div class="_1kea1wpt"><a style="color:#3884FF" class="current-tab" href="{% url 'profile' %}"><span class="_ib3ozv4">My Profile</span></a></div>
+                                    </div>
+                                    <div class="_hnaeki0">
+                                        <div class="_1kea1wpt">
+                                            <a class="_f1b38kq"  href="{% url 'account_reset_password' %}"><span class="_ib3ozv4">Change Password</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="_hnaeki0">
+                                        <div class="_1kea1wpt">
+                                            <a class="_f1b38kq"  href="{% url 'account_email' %}"><span class="_ib3ozv4">Change Email</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="_hnaeki0">
+                                        <div class="_1kea1wpt">
+                                            <a class="_f1b38kq"  href="{% url 'socialaccount_connections' %}"><span class="_ib3ozv4">Connected Accounts</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="_hnaeki0">
+                                        <div class="_1kea1wpt">
+                                            <a class="_f1b38kq"  href="{% url 'account_logout' %}"><span class="_ib3ozv4">Sign Out</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-container">
+    <div class="content-outer">
+        <div class="content-inner">
+            <!-- displaying messages -->
+            {% if messages %}
+            <div class="_y27ew4f" style="padding-top: 40px;">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="content-intro">
+            <div class="content-intro-outer">
+                <div class="content-intro-inner">
+                    {% if personal %}
+                    <h1 class="_1st9amh">
+                        <div class="_bc4egv"><span class="_7dnwj3f">Hello {{ name }}</span></div>
+                    </h1>
+                    {% else %}
+                    <h1 class="_1st9amh">
+                        <div class="_bc4egv"><span class="_7dnwj3f">You are viewing {{name}}'s profile</span></div>
+                    </h1>
+                    {% endif %}
+                    {% if solved %}
+                    <div class="intro-header">
+                        <p class="intro-body"><span class="intro-body-content">Total points: {{ points }}</span></p>
+                    </div>
+                    <div class="intro-header">
+                        <p class="intro-body"><span class="intro-body-content">Solved questions:-</span></p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="_1shwqdkd"></div>
+        </div>
+        <div class="_15pvv0lq"></div>
+        <div class="content-info">
+            <div class="_1u3clsji">
+                <div>
+                    <div>
+                        {% if solved %}
+                        <div>
+                            {% for question in solved %}
+                            <a class="_1lb91abp" href="#">
+                                <div class="_1mt6nbt7"></div>
+                                <div class="_1e85jbgh">
+                                    <div class="_vjdxrk9"><span class="_1o3dmghf">{{ question }}</span>
+                                    </div>
+                                </div>
+                                <div class="_13pyewcs">
+                                    <div class="_3egcedv"><span class="_u2h5ph">/<!-- -->practice_questions</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </a>
+                        </dviv>
+                        {% else %}
+                        <div class="personal">
+                            <p class="_1uc14g3"><span class="intro-body-content">No questions solved</span></p>
+                            <a class="_1lb91abp" href="{% url 'alltracks' %}">
+                                <div class="_1mt6nbt7"></div>
+                                <div class="_1e85jbgh">
+                                    <div class="_vjdxrk9"><span class="_1o3dmghf">Solve questions</span>
+                                    </div>
+                                </div>
+                                <div class="_13pyewcs">
+                                    <div class="_3egcedv"><span class="_u2h5ph">/<!-- -->practice_questions</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
