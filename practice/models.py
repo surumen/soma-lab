@@ -26,6 +26,8 @@ class Question(models.Model):
     right_count = models.PositiveIntegerField(default=0)
     wrong_count = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        ordering = ['number']
 
     def total_submission(self):
         return self.wrong_count+self.right_count
