@@ -14,6 +14,8 @@ class Track(models.Model):
 class Question(models.Model):
     track = models.ForeignKey(Track,on_delete=models.CASCADE)
     title = models.CharField(max_length=400)
+    editor = models.TextField(max_length=10,default="hello")
+    number = models.TextField(max_length=10,default="Question 0")
     description = models.TextField(max_length=1000,null=True)
     testcases = models.TextField(max_length=100)
     testcases_output = models.TextField(max_length=100,default="")

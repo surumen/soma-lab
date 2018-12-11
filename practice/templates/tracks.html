@@ -1,29 +1,196 @@
-{% extends "account/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-    <div class="container questions-list-container">
-        <div><h2 style="margin-top: 3em;text-align: center">Questions</h2></div>
-        <hr>
-        <ol class="question-list">
-            {% for question in questions %}
-                <div class="well question" style="background-color: white">
-                    <li>
-                        <div class="question-row">
-                            <div class="question-name">
-                                <span>
-                                    {{ question.title }}
-                                </span>
-                            </div>
-                            <div class="question-buttons">
-                                <a href="{% url 'question-detail' question.id %}" class="btn btn-primary solve-question-button">
-                                    Solve Question
-                                </a>
-                            </div>
-                        </div>
-                    </li>
+<head>
+    <meta charset="utf-8" />
+    <title>M-Soma Lab</title>
+    {% load staticfiles %}
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href="{% static 'projects/css/projects.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,900italic,900,700italic,700,600italic,600,400italic,300italic,300,200italic">
+    <style type="text/css">
+      pre {
+        border: none !important;
+      }
+      code {
+        background-color: transparent !important;
+      }
+      #hello,#baggage,#milestones,#discount,#border,#boat,#tug {
+        min-height: 200px;
+        /*max-width: 520px;*/
+      }
+
+      .nav-tab {
+        color: #3884FF;
+        border: 1px solid transparent;
+        border-right: 0px;
+        cursor: pointer;
+        background-color: #FFFFFF;
+        border-color: #E6ECF1 !important;
+      }
+    </style>
+    <script src="{% static 'ace-builds/src-noconflict/ace.js'%}"></script>
+</head>
+
+<body id="api-reference">
+    <!-- header -->
+    <div id="header">
+        <div class="header-section header-section-sidebar">
+            <div class="logo">
+                <a class="docs" href="/"><span style="color: #222">Soma</span>Lab</a>
+            </div>
+        </div>
+        <div class="header-section header-section-copy">
+            <!-- sidebar replacement for smaller screens -->
+            <div class="select-field jump-menu">
+                <select>
+                    <optgroup label="{{ t.title }}" class="nav-tab">
+                        {% for question in t.questions %}
+                        <option value="{{ question.id }}">{{ question.title }}</option>
+                        {% endfor %}
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="header-section header-section-example">
+            <div id="language">
+                <div class="language-toggle">
+                    <a class="language-toggle-lang " id="toggle-lang-python" href="/projects">
+                Python
+              </a>
+                    <a class="language-toggle-lang " id="toggle-lang-java" href="/">
+                Java
+              </a>
+                    <a class="language-toggle-lang " id="toggle-lang-javascript" href="/">
+                JavaScript
+              </a>
+                    <a class="language-toggle-lang " href="">
+                        |
+              </a>
+                    <a class="language-toggle-lang " href="/practice">
+                Practice Problems
+              </a>
+                    <a class="language-toggle-lang " href="/contests">
+                Contests
+              </a>
                 </div>
-            {% endfor %}
-        </ol>
+            </div>
+        </div>
     </div>
-
-{% endblock %}
+    <!-- /header -->
+    <div id="react-root-sidebar">
+        <!-- sidebar -->
+        <div id="sidebar">
+            <nav role="navigation" class="sidebar-nav">
+                <h5 class="sidebar-nav-heading">Level 1</h5>
+                <ul class="sidebar-nav-items">
+                    {% for question in questions %}
+                    <li>
+                        <a class="sidebar-nav-item  " href="{% url 'question-detail' question.id %}">
+                            {{ question.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div id="react-root-content">
+        <!-- example background -->
+        <div id="background">
+            <div class="background-actual"></div>
+        </div>
+        <!-- api docs -->
+        <div id="content">
+            {% for question in questions %}
+            <section class="method first-of-group" id="intro"><span style="font-size: 0px;"></span>
+                <div class="method-area">
+                    <div class="method-copy">
+                        <div class="method-copy-padding">
+                            <h1><span>{{ question.number }}:</span> {{ question.title }}</h1>
+                            <p>{{ question.description|linebreaks }}</p>
+                        </div>
+                        <p class="csat-widget"><span class="csat-widget-text">Hints</span><span class="csat-button csat-button-yes common-Button">Show</span></p>
+                        {% if question.explanation %}
+                        <div class="method-list"><h5 class="method-list-title">Explanation</h5>
+                            <ul class="method-list-group" style="display: block;">
+                                <li class="method-list-item" id="nearest_bee">
+                                    <p class="method-list-item-description"><span>{{ question.explanation }}</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="method-example">
+                        <div class="method-example-part"><h3>{{ question.title }}</h3>
+                        </div>
+                        <div class="method-example-part">
+                            <div id="{{ question.editor }}">
+                            </div>
+                            <div style="background-color: #f8f8f8;padding: 0 0 0 20px;height:30px;">
+                                <div style="float:right;">
+                                  <button class="run-button runButton_gu0e05 theme-border-radius theme-run-button" style="border:0;color:#fff;padding:0 10px;font-weight:bold;margin:0;height:30px;line-height:30px;font-family:fira-sans, sans-serif;font-size:13px; background-color: #12b47d !important;" type="button"><span class="runkit-icon fa fa-play" style="font-size:11px;margin-right:5px;"></span>▶ run</button>
+                                </div>
+                                <a class="controlsLink_nfn0bz-o_O-help_1yst184 theme-controls-color theme-border-color theme-hover-background-from-border-color theme-hover-color-controls" style="border:0;color:#0099e5;font-weight:bold;line-height:30px;font-family:fira-sans, sans-serif;font-size:13px;">compile</a>
+                            </div>
+                            <pre class=" language-none"><code class="language-python">Compiling...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+    <script type="text/javascript">
+      var editor = ace.edit("hello");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/python");
+      editor.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor2 = ace.edit("baggage");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor2.setTheme("ace/theme/monokai");
+      editor2.session.setMode("ace/mode/python");
+      editor2.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor3 = ace.edit("milestones");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor3.setTheme("ace/theme/monokai");
+      editor3.session.setMode("ace/mode/python");
+      editor3.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor4 = ace.edit("discount");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor4.setTheme("ace/theme/monokai");
+      editor4.session.setMode("ace/mode/python");
+      editor4.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor5 = ace.edit("border");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor5.setTheme("ace/theme/monokai");
+      editor5.session.setMode("ace/mode/python");
+      editor5.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor6 = ace.edit("boat");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor6.setTheme("ace/theme/monokai");
+      editor6.session.setMode("ace/mode/python");
+      editor6.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor7 = ace.edit("tug");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor7.setTheme("ace/theme/monokai");
+      editor7.session.setMode("ace/mode/python");
+      editor7.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+</body>
+<script src="{% static 'projects/js/jquery.min.js'%}"></script>
+</html>

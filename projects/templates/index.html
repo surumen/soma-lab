@@ -16,9 +16,9 @@
       code {
         background-color: transparent !important;
       }
-      #editor1,#editor2 {
-        min-height: 320px;
-        max-width: 520px;
+      #hello,#baggage,#milestones,#discount,#border,#boat,#tug {
+        min-height: 200px;
+        /*max-width: 520px;*/
       }
 
       .nav-tab {
@@ -38,43 +38,17 @@
     <div id="header">
         <div class="header-section header-section-sidebar">
             <div class="logo">
-                <a class="docs" href="/"><span style="color: #222">M-Soma</span> Lab</a>
+                <a class="docs" href="/"><span style="color: #222">Soma</span>Lab</a>
             </div>
         </div>
         <div class="header-section header-section-copy">
             <!-- sidebar replacement for smaller screens -->
             <div class="select-field jump-menu">
                 <select>
-                    <optgroup label="Introduction" class="nav-tab">
-                        <option value="intro">About this Game</option>
-                        <option value="core_concepts">Core concepts</option>
-                        <option value="core_classes">Core classes</option>
-                        <option value="game_layout">Game layout</option>
-                    </optgroup>
-                    <optgroup label="Phase 1: Basic Gameplay" class="nav-tab">
-                        <option value="place">Place</option>
-                        <option value="thrower_ant">Thrower Ant</option>
-                        <option value="harvester_ant">Havester Ant</option>
-                        <option value="bee">Bee</option>
-                    </optgroup>
-                    <optgroup label="Phase 2: Ants Attack" class="nav-tab">
-                        <option value="short_thrower">Short Thrower</option>
-                        <option value="long_thrower">Long Thrower</option>
-                        <option value="fire_ant">Fire Ant</option>
-                        <option value="hungry_ant">Hungry Ant</option>
-                        <option value="ninja_ant">Ninja Ant</option>
-                    </optgroup>
-                    <optgroup label="Phase 3: Protection" class="nav-tab">
-                        <option value="bodyguard_ant">Bodyguard Ant</option>
-                    </optgroup>
-                    <optgroup label="Phase 4: Water and Might" class="nav-tab">
-                        <option value="water">Water</option>
-                        <option value="scuba_thrower">Scuba Thrower</option>
-                        <option value="queen_ant">Queen Ant</option>
-                    </optgroup>
-                    <optgroup label="Phase 5: Superpowers (Optional)" class="nav-tab">
-                        <option value="slow_thrower">Slow Thrower</option>
-                        <option value="scary_thrower">Scary Thrower</option>
+                    <optgroup label="Level 1" class="nav-tab">
+                        {% for question in t.questions %}
+                        <option value="{{ question.id }}">{{ question.title }}</option>
+                        {% endfor %}
                     </optgroup>
                 </select>
             </div>
@@ -82,13 +56,13 @@
         <div class="header-section header-section-example">
             <div id="language">
                 <div class="language-toggle">
-                    <a class="language-toggle-lang " id="toggle-lang-python" data-language="python" href="/projects">
+                    <a class="language-toggle-lang " id="toggle-lang-python" href="/projects">
                 Python
               </a>
-                    <a class="language-toggle-lang " id="toggle-lang-java" data-language="java" href="/">
+                    <a class="language-toggle-lang " id="toggle-lang-java" href="/">
                 Java
               </a>
-                    <a class="language-toggle-lang " id="toggle-lang-javascript" data-language="javascript" href="/">
+                    <a class="language-toggle-lang " id="toggle-lang-javascript" href="/">
                 JavaScript
               </a>
                     <a class="language-toggle-lang " href="">
@@ -109,188 +83,27 @@
         <!-- sidebar -->
         <div id="sidebar">
             <nav role="navigation" class="sidebar-nav">
-                <h5 class="sidebar-nav-heading">Introduction</h5>
+                <h5 class="sidebar-nav-heading">Level 1</h5>
                 <ul class="sidebar-nav-items">
+                    {% for question in questions %}
                     <li>
-                        <a class="sidebar-nav-item  " href="/projects#intro">
-                    About this Game
-                  </a>
+                        <a class="sidebar-nav-item  " href="{% url 'question-detail' question.id %}">
+                            {{ question.title }}
+                        </a>
                     </li>
-                    <li>
-                        <a class="sidebar-nav-item  " href="/projects#core_concepts">
-                    Core concepts
-                  </a>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item  " href="/projects#core_classes">
-                    Core classes
-                  </a>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item  " href="/projects#game_layout">
-                    Game layout
-                  </a>
-                    </li>
+                    {% endfor %}
                 </ul>
-                <h5 class="sidebar-nav-heading">Phase 1: Basic gameplay</h5>
+                <h5 class="sidebar-nav-heading">Level 2: Basic gameplay</h5>
                 <ul class="sidebar-nav-items">
                     <li class="expanded">
                         <a class="sidebar-nav-item expandable" href="/projects#place">
                           Place
                         </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item" href="/projects#initialize_place">Initialize Place</a></li>
-                            <li><a class="sidebar-nav-item" href="/projects#add_insect">Add Insect</a></li>
-                            <li><a class="sidebar-nav-item" href="/projects#remove_insect">Remove Insect</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a class="sidebar-nav-item expandable" href="/projects#thrower_ant">
                           Thrower Ant
                         </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#nearest_bee">Nearest Bee</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable" href="/projects#harvester_ant">
-                          Harvester Ant
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#harverster_ants_action">Harverster Ant's Action</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable" href="/projects#bee">
-                          Bee
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#bees_action">Bee's Action</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <h5 class="sidebar-nav-heading">Phase 2: Ants Attack</h5>
-                <ul class="sidebar-nav-items">
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#short_thrower">
-                          Short Thrower
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#short_throwers_action">Short Thrower's Action</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#long_thrower">
-                          Long Thrower
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#long_throwers_action">Long Thrower's Action</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#fire_ant">
-                          Fire Ant
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#reduce_armor">Reduce Armor</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#hungry_ant">
-                          Hungry Ant
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#initialize_hungry_ant">Initialize Hungry Ant</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#eat_bee">Eat Bee</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#hungry_ants_action">Hungry Ant's Action</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#ninja_ant">
-                          Ninja Ant
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#ninja_ants_action">Ninja Ant's Action</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <h5 class="sidebar-nav-heading">Phase 3: Protection</h5>
-                <ul class="sidebar-nav-items">
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#bodyguard_ant">
-                          Bodyguard Ant
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#can_contain">Can Contain</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#contain_ant">Contain Ant</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#bodyguard_ants_action">Bodyguard Ant's Action</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#tank_ant">
-                          Tank Ant
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#tank_ants_action">Tank Ant's Action</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <h5 class="sidebar-nav-heading">Phase 4: Water and Might</h5>
-                <ul class="sidebar-nav-items">
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#water">
-                          Water
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#add_insect_water">Add Insect</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#scuba_thrower">
-                          Scuba Thrower
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#scuba_throwers_action">Scuba Thrower's Action</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#queen_ant">
-                          Queen Ant
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#initialize_queen_ant">Initialize Queen Ant</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#queen_ants_action">Queen Ant's Action</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#reduce_armor_queen_ant">Reduce Armor</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <h5 class="sidebar-nav-heading">Phase 5 : Superpowers (Optional)</h5>
-                <ul class="sidebar-nav-items">
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#slow_thrower">
-                          Superpowers
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#make_slow">Make Bees Slow</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#make_scare">Scare Bees</a></li>
-                            <li><a class="sidebar-nav-item " href="/projects#apply_superpower">Apply Superpower</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#slow_thrower">
-                          Slow Thrower
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#slow_throwers_action">Slow Thrower's Action</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-nav-item expandable " href="/projects#scary_thrower">
-                          Scary Thrower
-                        </a>
-                        <ul class="sidebar-nav-items">
-                            <li><a class="sidebar-nav-item " href="/projects#scary_throwers_action">Scary Thrower's Action</a></li>
-                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -303,228 +116,93 @@
         </div>
         <!-- api docs -->
         <div id="content">
+            {% for question in questions %}
             <section class="method first-of-group" id="intro"><span style="font-size: 0px;"></span>
                 <div class="method-area">
                     <div class="method-copy">
-                        <div class="method-copy-padding"><h1>About this Game</h1>
-                            <p>In this project, you will create a <a href="https://secure.wikimedia.org/wikipedia/en/wiki/Tower_defense">tower defense</a> game called Ants Vs. SomeBees. As the ant queen, you populate your colony with the bravest ants you can muster. Your ants must protect their queen from the evil bees that invade your territory. Irritate the bees enough by throwing leaves at them, and they will be vanquished. Fail to pester the airborne intruders adequately, and your queen will succumb to the bees' wrath.  This game is inspired by PopCap Games' <a href="https://www.ea.com/studios/popcap/plants-vs-zombies">Plants Vs. Zombies</a>.</p>
-                            <p>This project combines functional and object-oriented programming paradigms, focusing on the material from <a href="http://composingprograms.com/pages/25-object-oriented-programming.html">Chapter 2.5</a> of Composing Programs. The project also involves understanding, extending, and testing a large program.</p>
-                            <p>For the functions that we ask you to complete, there may be some initial code that we provide. If you would rather not use that code, feel free to delete it and start from scratch. You may also add new function definitions as you see fit.</p>
+                        <div class="method-copy-padding">
+                            <h1><span>{{ question.number }}:</span> {{ question.title }}</h1>
+                            <p>{{ question.description|linebreaks }}</p>
                         </div>
-                        <p class="csat-widget"><span class="csat-widget-text">Does this project sound interesting to you?</span><span class="csat-button csat-button-yes common-Button">Yes</span><span class="csat-button csat-button-no common-Button">No</span></p>
-                    </div>
-                    <div class="method-example">
-                        <div class="method-example-part"><h3>Code Editor</h3>
-                            <p>The complete skeleton code for this project is available on this <a href="https://github.com/surumen/msoma">Github repository</a>. Many of the classes defined below are already implemented for you. Your task is to complete the missing methods for each class</a>.</p>
-                        </div>
-                        <div class="method-example-part" id="editor1">
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="method first-of-group" id="core_concepts"><span style="font-size: 0px;"></span>
-                <div class="method-area">
-                    <div class="method-copy">
-                        <div class="method-copy-padding"><h1>Core Concepts</h1>
-                            <p>A game of Ants Vs. SomeBees consists of a series of turns. In each turn, new bees may enter the ant colony. Then, new ants are placed to defend their colony. Finally, all insects (ants, then bees) take individual actions. Bees either try to move toward the end of the tunnel or sting ants in their way. Ants perform a different action depending on their type, such as collecting more food, or throwing leaves at the bees. The game ends either when a bee reaches the ant queen (you lose), or the entire bee fleet has been vanquished (you win).</p>
-                        </div>
-                        <div class="method-list">
-                            <h5 class="method-list-title">Descriptions</h5>
+                        <p class="csat-widget"><span class="csat-widget-text">Hints</span><span class="csat-button csat-button-yes common-Button">Show</span></p>
+                        {% if question.explanation %}
+                        <div class="method-list"><h5 class="method-list-title">Explanation</h5>
                             <ul class="method-list-group" style="display: block;">
-                                <li class="method-list-item" id="descriptions">
-                                  <h3 class="method-list-item-label"><a href="#the_colony" class="header-anchor"></a><span class="method-list-item-label-name">The Colony</span></h3>
-                                    <p class="method-list-item-description"><span>This is where the game takes place. The colony consists of several places that are chained together to form a tunnel where bees can travel through. The colony has some quantity of food that can be expended to deploy ant troops.</span></p>
-                                </li>
-                                <li class="method-list-item" id="places">
-                                  <h3 class="method-list-item-label"><a href="#places" class="header-anchor"></a>  <span class="method-list-item-label-name">Places</span></h3>
-                                    <p class="method-list-item-description"><span>A place links to another place to form a tunnel. The player can place a single ant into each place. However, there can be many bees in a single place.</span></p>
-                                </li>
-                                <li class="method-list-item" id="the_hive">
-                                  <h3 class="method-list-item-label"><a href="#the_hive" class="header-anchor"></a>  <span class="method-list-item-label-name">The Hive</span></h3>
-                                    <p class="method-list-item-description"><span>This is the place where bees originate. Bees exit the hive to enter the ant colony.</span></p>
-                                </li>
-                                <li class="method-list-item" id="ants">
-                                  <h3 class="method-list-item-label"><a href="#ants" class="header-anchor"></a>  <span class="method-list-item-label-name">Ants</span></h3>
-                                    <p class="method-list-item-description"><span>Ants are the usable troops in the game that the player places into the colony. Each type of ant takes a different action and requires a different amount of food to place. The two most basic ant types are the <code>HarvesterAnt</code>, which adds one food to the colony during each turn, and the <code>ThrowerAnt</code>, which throws a leaf at a bee each turn. You will be implementing many more.</span></p>
-                                </li>
-                                <li class="method-list-item" id="bees">
-                                  <h3 class="method-list-item-label"><a href="#bees" class="header-anchor"></a>  <span class="method-list-item-label-name">Bees</span></h3>
-                                    <p class="method-list-item-description"><span>Bees are the antagonistic troops in the game that the player must defend the colony from. Each turn, a bee either advances to the next place in the tunnel if no ant is in its way, or it stings the ant in its way. Bees win when at least one bee reaches the end of a tunnel.</span></p>
-                                </li>
-                                <li class="method-list-item" id="queen_ant">
-                                  <h3 class="method-list-item-label"><a href="#queen_ant" class="header-anchor"></a>  <span class="method-list-item-label-name">Queen Ant</span></h3>
-                                    <p class="method-list-item-description"><span>There is one queen ant in the whole colony. She is able to attack bees but she also has a special ability of fortifying the other ant troops. Bees can also win if they destroy the queen ant.</span></p>
+                                <li class="method-list-item" id="nearest_bee">
+                                    <p class="method-list-item-description"><span>{{ question.explanation }}</span></p>
                                 </li>
                             </ul>
                         </div>
+                        {% endif %}
                     </div>
                     <div class="method-example">
+                        <div class="method-example-part"><h3>{{ question.title }}</h3>
+                        </div>
                         <div class="method-example-part">
-                            <div class="method-example-part" id="editor1">
+                            <div id="{{ question.editor }}">
                             </div>
+                            <div style="background-color: #f8f8f8;padding: 0 0 0 20px;height:30px;">
+                                <div style="float:right;">
+                                  <button class="run-button runButton_gu0e05 theme-border-radius theme-run-button" style="border:0;color:#fff;padding:0 10px;font-weight:bold;margin:0;height:30px;line-height:30px;font-family:fira-sans, sans-serif;font-size:13px; background-color: #12b47d !important;" type="button"><span class="runkit-icon fa fa-play" style="font-size:11px;margin-right:5px;"></span>▶ run</button>
+                                </div>
+                                <a class="controlsLink_nfn0bz-o_O-help_1yst184 theme-controls-color theme-border-color theme-hover-background-from-border-color theme-hover-color-controls" style="border:0;color:#0099e5;font-weight:bold;line-height:30px;font-family:fira-sans, sans-serif;font-size:13px;">compile</a>
+                            </div>
+                            <pre class=" language-none"><code class="language-python">Compiling...</code></pre>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="method first-of-group" id="core_classes"><span style="font-size: 0px;"></span>
-                <div class="method-area">
-                    <div class="method-copy">
-                        <div class="method-copy-padding"><h1>Core Classes</h1>
-                            <p>The concepts described above each have a corresponding class that encapsulates the logic for that concept. Here is a summary of the main classes involved in this game:</p>
-                        </div>
-                        <div class="method-list">
-                            <ul class="method-list-group" style="display: block;">
-                                <li class="method-list-item" id="antcolony_class">
-                                  <h3 class="method-list-item-label"><a href="#ant_colony" class="header-anchor"></a><span class="method-list-item-label-name"><code>AntColony</code></span></h3>
-                                    <p class="method-list-item-description"><span>Represents the colony and some state information about the game, including how much food is available, how much time has elapsed, where the <code>QueenAnt</code> resides, and all the <code>Place</code>s in the game.</span></p>
-                                </li>
-                                <li class="method-list-item" id="place_class">
-                                  <h3 class="method-list-item-label"><a href="#place" class="header-anchor"></a>  <span class="method-list-item-label-name"><code>Place</code></span></h3>
-                                    <p class="method-list-item-description"><span>Represents a single place that holds insects. At most one <code>Ant</code> can be in a single place, but there can be many <code>Bee</code>s. <code>Place</code> objects have an <code>exit</code> and an <code>entrance</code> which are also places. Bees travel through a tunnel by moving to a <code>Place</code>'s <code>exit</code>.</span></p>
-                                </li>
-                                <li class="method-list-item" id="hive_class">
-                                  <h3 class="method-list-item-label"><a href="#hive" class="header-anchor"></a>  <span class="method-list-item-label-name"><code>Hive</code></span></h3>
-                                    <p class="method-list-item-description"><span>Represents the place where <code>Bee</code>s start out.</span></p>
-                                </li>
-                                <li class="method-list-item" id="insect_class">
-                                  <h3 class="method-list-item-label"><a href="#insect" class="header-anchor"></a>  <span class="method-list-item-label-name"><code>Insect</code></span></h3>
-                                    <p class="method-list-item-description"><span>A superclass for <code>Ant</code> and <code>Bee</code>. All insects have an <code>armor</code> attribute, their remaining health, and a <code>place</code> attribute, the <code>Place</code> where they are currently located. Each turn, every active <code>Insect</code> in the game performs its <code>action</code>.</span></p>
-                                </li>
-                                <li class="method-list-item" id="ant_class">
-                                  <h3 class="method-list-item-label"><a href="#ant" class="header-anchor"></a>  <span class="method-list-item-label-name"><code>Ant</code></span></h3>
-                                    <p class="method-list-item-description"><span>Represents ants. Each <code>Ant</code> subclass has special attributes or a special <code>action</code> that distinguish it from other <code>Ant</code> types. For example, a <code>HarvesterAnt</code> gets food for the colony and a <code>ThrowerAnt</code> attacks <code>Bee</code>s. Each ant type also has a <code>food_cost</code> attribute that indicates how much it costs to deploy one unit of that type of ant.</span></p>
-                                </li>
-                                <li class="method-list-item" id="bee_class">
-                                  <h3 class="method-list-item-label"><a href="#bee" class="header-anchor"></a>  <span class="method-list-item-label-name"><code>Bee</code></span></h3>
-                                    <p class="method-list-item-description"><span>Represents bees. Each turn, a bee either moves to the <code>exit</code> of its current <code>Place</code> if no ant blocks its path, or stings an ant that blocks its path.</span></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="method-example">
-                        <div class="method-example-part" id="editor1">
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="method first-of-group" id="game_layout"><span style="font-size: 0px;"></span>
-                <div class="method-area">
-                    <div class="method-copy">
-                        <div class="method-copy-padding"><h1>Game Layout</h1>
-                            <p>Below is a visualization of an AntColony. As you work through the unlocking tests and problems, we recommend drawing out similar diagrams to help your understanding.</p>
-                            <p><img class="img-responsive center-block" src="https://cs61a.org/proj/ants/assets/colony-drawing.png" style="width: 100%;height: 100%;object-fit: cover;overflow: hidden;"></p>
-                        </div>
-                    </div>
-                    <div class="method-example"></div>
-                </div>
-            </section>
-            <section class="method first-of-group" id="basic_gameplay"><span style="font-size: 0px;"></span>
-                <div class="method-area">
-                    <div class="method-copy">
-                        <div class="method-copy-padding"><h1><span>Phase 1: Basic Gameplay</span></h1>
-                            <p>
-                                <p>In the first phase you will complete the implementation that will allow for basic gameplay with the two basic <code>Ant</code>s: the <code>HarvesterAnt</code> and the <code>ThrowerAnt</code>.</p>
-                            </p>
-                            <p>
-                                <p>Answer the questions on the editor to after reading through the code in the previous sections to familiarize yourself with the project.</p>
-                            </p>
-                            <p class="csat-widget"><span class="csat-widget-text">Start Timer</span><span class="csat-button csat-button-yes common-Button">4.00</span><span class="csat-button csat-button-no common-Button">Mins</span></p>
-                        </div>
-                        <div class="method-list">
-                          <div class="method-list-item" id="quiz_answers"><div class="method-list method-list-child"><h5 class="method-list-title"> Answers</h5></div></div>
-                        </div>
-                    </div>
-                    <div class="method-example">
-                        <!--quiz 1-->
-                        <p class="csat-widget"><span class="csat-widget-text">What is the significance of an insect's <code>armor</code> attribute? Does this value change? If so, how?</span></p>
-                        <!--quiz 2-->
-                        <p class="csat-widget"><span class="csat-widget-text">What are all of the attributes of the <code>Ant</code> class?</span></p>
-                        <!--quiz 3-->
-                        <p class="csat-widget"><span class="csat-widget-text">Is the armor attribute of the <code>Ant</code> class an instance attribute or class attribute? Why?</span></p>
-                        <!--quiz 4-->
-                        <p class="csat-widget"><span class="csat-widget-text">Is the <code>damage</code> attribute of an <code>Ant</code> subclass (such as <code>ThrowerAnt</code>) an instance attribute or class attribute? Why?</span></p>
-                        <!--quiz 5-->
-                        <p class="csat-widget"><span class="csat-widget-text">Which class do both <code>Ant</code> and <code>Bee</code> inherit from?</span></p>
-                        <!--quiz 6-->
-                        <p class="csat-widget"><span class="csat-widget-text">What do instances of Ant and instances of Bee have in common?</span></p>
-                        <!--quiz 6-->
-                        <p class="csat-widget"><span class="csat-widget-text">How many insects can be in a single Place at any given time?</span></p>
-                        <!--quiz 7-->
-                        <p class="csat-widget"><span class="csat-widget-text">What does a <span>Bee</span> do during its turn?</span></p><br>
-                        <!--quiz 8-->
-                        <p class="csat-widget"><span class="csat-widget-text">When does the game end?</span></p>
-                    </div>
-                </div>
-                <section class="method" id="place"><span style="font-size: 0px;"></span>
-                    <div class="method-area">
-                        <div class="method-copy">
-                            <div class="method-copy-padding"><h1>Place</h1>
-                                <p>A Place holds insects and has an exit to another Place. Implement the following methods for the <code>Place</code> class</p>
-                                <p>Complete the Place constructor by adding code that tracks entrances. Right now, a Place keeps track only of its exit. We would like a Place to keep track of its entrance as well. A Place needs to track only one entrance. Tracking entrances will be useful when an Ant needs to see what Bees are in front of it in the tunnel.</p>
-                                <p>However, simply passing an entrance to a Place constructor will be problematic; we would need to have both the exit and the entrance before creating a Place! (It's a chicken or the egg problem.) To get around this problem, we will keep track of entrances in the following way instead. The Place constructor should specify that:</p>
-                                <ul>
-                                  <li>A newly created Place always starts with its entrance as <code>None</code>.</li>
-                                  <li>If the Place has an exit, then the exit's entrance is set to that Place.</li>
-                                </ul>
-                            </div>
-                            <div class="method-list"><h5 class="method-list-title">Methods</h5>
-                                <ul class="method-list-group" style="display: block;">
-                                    <li class="method-list-item" id="initialize_place"><h3 class="method-list-item-label"><a href="#initialize_place" class="header-anchor"></a>  <span class="method-list-item-label-name">__init__</span>  <span class="method-list-item-label-details">doesn't return</span></h3>
-                                        <p class="method-list-item-description"><span>Creates a Place with the given <code>NAME</code> and <code>EXIT</code></span> <span>Your task is to add an entrance to the exit.</span></p>
-                                    </li>
-                                    
-                                    <li class="method-list-item" id="remove_insect"><h3 class="method-list-item-label"><a href="#remove_insect" class="header-anchor"></a>  <span class="method-list-item-label-name">remove_insect</span>  <span class="method-list-item-label-details">doesn't return</span>    </h3>
-                                        <p class="method-list-item-description"><span>Removes an INSECT from this Place.</span><br><br><span>A target Ant may either be directly in the Place, or be contained by acontainer Ant at this place. The true QueenAnt may not be removed. <br><br>If <code>remove_insect</code> tries to remove an Ant that is not anywhere in this Place, an <code>AssertionError</code> is raised.</span><br><br><span>A Bee is just removed from the list of Bees.</span></p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="method-example">
-                            <div class="method-example-part" id="editor1">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="method" id="thrower_ant"><span style="font-size: 0px;"></span>
-                    <div class="method-area">
-                        <div class="method-copy">
-                            <div class="method-copy-padding"><h1>Thrower Ant</h1>
-                                <p>In order for a ThrowerAnt to attack, it must know which bee it should hit. The provided implementation of the nearest_bee method in the ThrowerAnt class only allows them to hit bees in the same Place. Your job is to fix it so that a ThrowerAnt will throw_at the nearest bee in front of it that is not still in the Hive. The nearest_bee method returns a random Bee from the nearest place that contains bees. Places are inspected in order by following their entrance attributes.</p>
-                                <p><ul>
-                                  <li>Start from the current Place of the ThrowerAnt.</li>
-                                  <li>For each place, return a random bee if there is any, or consider the next place that is stored as the current place's entrance.</li>
-                                  <li>If there is no bee to attack, return None.</li>
-                                </ul></p>
-                            </div>
-                            <div class="method-list"><h5 class="method-list-title">Methods</h5>
-                                <ul class="method-list-group" style="display: block;">
-                                    <li class="method-list-item" id="nearest_bee"><h3 class="method-list-item-label"><a href="#nearest_bee" class="header-anchor"></a>  <span class="method-list-item-label-name">nearest_bee</span>  <span class="method-list-item-label-badge">return Bee</span>    </h3>
-                                        <p class="method-list-item-description"><span>After implementing nearest_bee, a ThrowerAnt should be able to throw_at a Bee in front of it that is not still in the Hive.</span></p>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="method-copy-padding"><h2>Harvester Ant</h2>
-                                <p>HarvesterAnt produces 1 additional food per turn for the colony. Implement this action</p>
-                            </div>
-                            <div class="method-copy-padding"><h2>Bee (optional)</h2>
-                                <p>A Bee's action stings the Ant that blocks its exit if it is blocked, or moves to the exit of its current place otherwise. Implement special handling for bee direction</p>
-                            </div>
-                        </div>
-                        <div class="method-example">
-                            <div class="method-example-part" id="editor1">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </section>
+            {% endfor %}
         </div>
     </div>
     <script type="text/javascript">
-      var editor = ace.edit("editor1");
+      var editor = ace.edit("hello");
       ace.config.set('basePath', '../static/ace-builds/src-noconflict');
       editor.setTheme("ace/theme/monokai");
       editor.session.setMode("ace/mode/python");
-      editor.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\nclass Insect(object):\n    # An Insect, the base class of Ant and Bee, has armor and a Place.\n\nclass Bee(Insect):\n    # A Bee moves from place to place, following exits and stinging ants.\n\nclass Ant(Insect):\n    # An Ant occupies a place and does work for the colony.\n\nclass HarvesterAnt(Ant):\n    # HarvesterAnt produces 1 additional food per turn for the colony.\n\nclass ThrowerAnt(Ant):\n    # ThrowerAnt throws a leaf each turn at the nearest Bee in its range.\n\nclass ShortThrower(ThrowerAnt):\n    # A ThrowerAnt that only throws leaves at Bees at most 3 places away.\n\nclass LongThrower(ThrowerAnt):\n    # A ThrowerAnt that only throws leaves at Bees at least 5 places away.\n\nclass FireAnt(Ant):\n    # FireAnt cooks any Bee in its Place when it expires.\n\nclass HungryAnt(Ant):\n    # HungryAnt will take three turns to digest a Bee in its place. While digesting, the HungryAnt can't eat another Bee.\n\nclass NinjaAnt(Ant):\n    # NinjaAnt does not block the path and damages all bees in its place.\n\nclass BodyguardAnt(Ant):\n    # BodyguardAnt provides protection to other Ants.\n\nclass TankAnt(BodyguardAnt):\n    # TankAnt provides both offensive and defensive capabilities.\n\nclass Water(Place):\n    # Water is a place that can only hold watersafe insects.\n\nclass QueenAnt(Ant):  # You should change this line\n    # The Queen of the colony. The game is over if a bee enters her place.\n\nclass AntRemover(Ant):\n    # Allows the player to remove ants from the board in the GUI.\n\nclass SlowThrower(ThrowerAnt):\n    # ThrowerAnt that causes Slow on Bees.\n\nclass SlowThrower(ThrowerAnt):\n    # ThrowerAnt that causes Slow on Bees.\n\nclass ScaryThrower(ThrowerAnt):\n    # ThrowerAnt that intimidates Bees, making them back away instead of advancing.");
+      editor.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor2 = ace.edit("baggage");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor2.setTheme("ace/theme/monokai");
+      editor2.session.setMode("ace/mode/python");
+      editor2.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor3 = ace.edit("milestones");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor3.setTheme("ace/theme/monokai");
+      editor3.session.setMode("ace/mode/python");
+      editor3.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor4 = ace.edit("discount");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor4.setTheme("ace/theme/monokai");
+      editor4.session.setMode("ace/mode/python");
+      editor4.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor5 = ace.edit("border");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor5.setTheme("ace/theme/monokai");
+      editor5.session.setMode("ace/mode/python");
+      editor5.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor6 = ace.edit("boat");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor6.setTheme("ace/theme/monokai");
+      editor6.session.setMode("ace/mode/python");
+      editor6.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
+    </script>
+    <script type="text/javascript">
+      var editor7 = ace.edit("tug");
+      ace.config.set('basePath', '../static/ace-builds/src-noconflict');
+      editor7.setTheme("ace/theme/monokai");
+      editor7.session.setMode("ace/mode/python");
+      editor7.setValue("from collections import OrderedDict\nimport random\n\n################\n# Core Classes #\n################\n\nclass Place(object):\n    # A Place holds insects and has an exit to another Place.\n\n");
     </script>
 </body>
 <script src="{% static 'projects/js/jquery.min.js'%}"></script>
